@@ -10,7 +10,11 @@ include_once("CommonCode.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login here</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
+    <link rel='stylesheet' type='text/css' media='screen' href='LoginLogout.css?t=<?= time(); ?>'>
 </head>
 
 <body>
@@ -25,7 +29,7 @@ include_once("CommonCode.php");
     <?php
 
     if (isset($_POST["user"], $_POST["password"])) {
-       
+
         $sqlState = $connection->prepare("SELECT * FROM Users where UserName = ?"); //Before inserting the user, you gonna select the user to SEE if the user exists
         $sqlState->bind_param("s", $_POST["user"]); // You bind what the guy wrote
         $sqlState->execute(); //Execute the Select
@@ -37,7 +41,7 @@ include_once("CommonCode.php");
             $row = $resultéieren->fetch_assoc(); //If the user exists, it copies (fetch) the row to the $row
 
             if (password_verify($_POST["password"], $row["UserPsw"])) { //You gonna verify what the USER wrote on the INPUT, with the HASHED password on the database
-                
+
                 $_SESSION["UserName"] = $_POST["user"]; //You store the username on the Session
                 $_SESSION["UserLoggedIn"] = true; //The User just logged in
 
@@ -46,13 +50,35 @@ include_once("CommonCode.php");
             } else { // If it doesn't verify
                 echo '<script> alert("Password does not match") </script>'; //alert
             }
-        }else{
+        } else {
             echo '<script> alert("User does not exist") </script>';
         }
     }
 
     ?>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
 
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <h3 style="margin-top: 10px;">Login Page</h3>
+            </div>
+
+            <!-- Login Form -->
+            <form>
+                <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username">
+                <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password">
+                <input type="submit" class="fadeIn fourth" value="Login">
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                No Account? <a class="underlineHover" href="SignUp.php">Sign Up!</a>
+            </div>
+
+        </div>
+    </div>
 
     <form class="Login" method="POST">
         <h3>Login</h3>

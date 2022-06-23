@@ -6,6 +6,7 @@
     font-size: 1.5vw;
 }
 
+
 body {
     background-image: url(./images/Back.png);
 }
@@ -244,19 +245,6 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    color: white;
-    background-color: rgb(29, 29, 29);
-    border: 10px solid lightskyblue;
-}
-
-.Login {
-    display: flex;
-    position: relative;
-    transform: translateY(250%);
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 30px;
     color: white;
     background-color: rgb(29, 29, 29);
     border: 10px solid lightskyblue;
