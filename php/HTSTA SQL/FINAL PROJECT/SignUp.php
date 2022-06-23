@@ -28,8 +28,8 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
 
         header("Location: Home.php"); //Redirect to the homepage
         die(); //We don't want run ANYTHING else after the header
-        
-    }else{
+
+    } else {
         echo '<script> alert("User already exist") </script>';
     }
 }
@@ -43,9 +43,11 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Sign Up here</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
-    <script src='main.js'></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </head>
 
 <body>
@@ -57,25 +59,31 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
     include("navigation.php");
     ?>
 
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
 
-    <form class="SignUp" method="POST">
-        <h3>SIGN UP HERE</h3>
-        <div>
-            <label>New Username</label>
-            <input type="text" name="UserName" required>
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <h3 style="margin-top: 10px;">Sign Up Page</h3>
+            </div>
+
+
+            <!-- Login Form -->
+            <form method="POST">
+                <input type="text" id="login" class="fadeIn second" name="UserName" placeholder="New Username">
+                <input type="password" id="password" class="fadeIn third" name="PswOne" placeholder="New Password">
+                <input type="password" id="password" class="fadeIn third" name="PswTwo" placeholder="Rewrite your password">
+                <input type="submit" class="fadeIn fourth" value="Sign up">
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                You have an Account? <a class="underlineHover" href="Login.php">Login!</a>
+            </div>
+
         </div>
-        <div>
-            <label>Password</label>
-            <input type="password" name="PswOne" required>
-        </div>
-        <div>
-            <label>Rewrite your password</label>
-            <input type="password" name="PswTwo" required>
-        </div>
-        <div class="submit">
-            <button type="submit" id="ButtonRegist">Sign Up</button>
-        </div>
-    </form>
+    </div>
 </body>
 
 </html>

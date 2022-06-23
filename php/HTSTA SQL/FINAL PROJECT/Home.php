@@ -11,7 +11,6 @@ include_once("CommonCode.php");
     <title>Home</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
-    <script src='main.js'></script>
 </head>
 
 <body>
