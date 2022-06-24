@@ -31,8 +31,7 @@ if(isset($_POST["LogoutHidden"])){
         </div>
     <?php
 } ?>        
-
-        
+       
     </div>
     <?php 
     include_once("LanguageSelector.php");

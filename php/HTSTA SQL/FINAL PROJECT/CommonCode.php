@@ -16,7 +16,6 @@ if(isset($_GET["LANG"])) {
     $_SESSION["Lang"] = $_GET["LANG"];
 }
 
-
 $host = "localhost";
 $user = "root";
 $psw = "";

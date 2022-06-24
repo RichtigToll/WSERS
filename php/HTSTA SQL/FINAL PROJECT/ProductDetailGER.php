@@ -19,7 +19,7 @@ include_once("CommonCode.php");
     $FlagSelected = "SelectedFlag";
     $URL = "ProductDetailGER.php?ProductID=" . $_GET["ProductID"];
     $URL2 = "ProductDetail.php?ProductID=" . $_GET["ProductID"];
-    include("ProductInfoNavGER.php");
+    include("ProductInfoNav.php");
     //navbar("Home","HomeGER.php", ["Home", "My Products", "About", "Contact"]);
     ?>
 

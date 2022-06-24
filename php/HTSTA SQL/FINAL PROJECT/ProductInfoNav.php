@@ -1,8 +1,9 @@
 <div class="navbar">
-    <img src="./images/GLUXeng.png" style="transform: translateX(1%);" text="LuxGovernment" width="21%">
+
     <?php
     if ($_SESSION["Lang"] == "EN") {
     ?>
+        <img src="./images/GLUXeng.png" style="transform: translateX(1%);" text="LuxGovernment" width="21%">
         <h3>INFO PAGE</h3>
         <div id="alllinks">
             <a href="Products.php" class="navbarborders">Back</a>

@@ -13,11 +13,7 @@
         </div>
             <a href="AddressGER.php" class="navbarborders <?php if($ActivePage == "Address") { print ("class = active");} ?>">Kontakt</a>
     </div>
-    <div id="flag">
-        <img id="LanguageLogo" src="./images/SwitchLANG.png" alt="Deutsch" class="FlagSize">
-        <div class="down">
-            <a href="<?= $URL; ?>" > <img <?php if (isset($FlagSelectedGER)) if ($FlagSelectedGER == "SelectedFlag") { print("id = 'FlagSelected'");} ?>src="./images/German.png" alt="Deutsch" class="FlagSize"></a>
-            <a href="<?= $URL2; ?>" > <img src="./images/English.png" alt="English" class="FlagSize"></a>
-        </div>
-    </div>
+    <?php 
+    include_once("LanguageSelector.php");
+    ?>
 </div>
