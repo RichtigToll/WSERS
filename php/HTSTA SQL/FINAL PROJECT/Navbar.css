@@ -460,9 +460,9 @@ body {
 .thisproduct {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 100px;
      /* THIS SHOWS THE PRODUCTS AS RECTANGLE/RECHTECK */
-    border: 10px solid red;
+    border: 2px solid red;
     border-radius: 10px;
     align-items: center;
     justify-content: space-around;

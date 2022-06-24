@@ -2,6 +2,12 @@
 include_once("CommonCode.php");
 
 if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
+    if($_POST["UserName"] == "" || $_POST["PswOne"] == "") {
+        print "<script>alert('Give a Username/Password')</script>";
+        header("Refresh:0");
+        die();
+    }
+    
     if ($_POST["PswOne"] !== $_POST["PswTwo"]) { // If a user didn't rewrite the password correctly
         print "<script>alert('Repeat your password')</script>";
         header("Refresh:0");
@@ -56,7 +62,7 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
     $FlagSelected = "SelectedFlag";
     $URL = "SignUpGER.php";
     $URL2 = "SignUp.php";
-    include("navigation.php");
+    include("ProductInfoNav.php");
     ?>
 
     <div class="wrapper fadeInDown">

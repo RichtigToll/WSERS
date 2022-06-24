@@ -17,7 +17,7 @@ include_once("CommonCode.php");
     <?php
     $ActivePage = "Home";
     $FlagSelected = "SelectedFlag";
-    $URL = "ProductDetail.php";
+    $URL = "ProductDetailGER.php";
     $URL2 = "ProductDetail.php";
     include("ProductInfoNav.php");
     //navbar("Home","HomeGER.php", ["Home", "My Products", "About", "Contact"]);
@@ -51,7 +51,7 @@ include_once("CommonCode.php");
                     </h3>
                     <a> <img src="<?= $row["ProductImage"] ?>" alt="Product" class="ProductStyle"> </a>
                     <div>
-                        <a href="<?= $row["ProductLink"] ?>"> <input value="Order" type="submit" id="ColorSubmitProducts" class="ItalicStyle"> </a>
+                        <a href="<?= $row["ProductLink"] ?>"> <input value="Shopping Cart" type="submit" id="ColorSubmitProducts" class="ItalicStyle"> </a>
                     </div>
                 </div>
             </div>

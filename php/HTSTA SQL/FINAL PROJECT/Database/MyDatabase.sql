@@ -13,7 +13,7 @@ create Table Products (
 );
 
 create Table Languages (
-    LanID int not null AUTO_INCREMENT,
+    LanID int not null,
     LanName varchar(25),
     PRIMARY KEY (LanID)
 );
@@ -37,8 +37,8 @@ create Table Descriptions (
     FOREIGN KEY (LanID) REFERENCES Languages(LanID)
 );
 
-INSERT INTO Languages (LanName) VALUES("ENGLISH");
-INSERT INTO Languages (LanName) VALUES("DEUTSCH");
+INSERT INTO Languages (LanID, LanName) VALUES(1, "EN");
+INSERT INTO Languages (LanID, LanName) VALUES(2, "DE");
 
 INSERT INTO Products (ProductName, ProductImage, ProductLink, Price) VALUES("NINTENDO SWITCH", "./images/Nintendo.jpg", "https://www.amazon.de/-/en/dp/B098RJXBTY/ref=sr_1_4?keywords=nintendoswitch+oled&qid=1638262014&qsid=258-1765935-0075309&sr=8-4&sres=B098BYN3X3%2CB098RJXBTY%2CB09CPFMT8R%2CB09DVM2T6X%2CB07JBZ7PLQ%2CB09FLC4J73%2CB09KFYT6LD%2CB09F6JT3YD%2CB09BQ34PRK%2CB09B4MJ9H3%2CB09F2YR42P%2CB09FXYQRHH%2CB09MJLMX8Q%2CB09MCGRTLN%2CB09H4R2TL3%2CB09FJR7D6S", 369);
 INSERT INTO Products (ProductName, ProductImage, ProductLink, Price) VALUES("PLAYSTATION 5", "./images/PS5.jpg", "https://www.amazon.de/Sony-Interactive-Entertainment-PlayStation-5/dp/B08H93ZRK9/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=PS5&qid=1637834914&sr=8-1", 9999);

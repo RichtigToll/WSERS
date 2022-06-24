@@ -49,7 +49,7 @@ if (isset($_POST["user"], $_POST["password"])) {
     $FlagSelected = "SelectedFlag";
     $URL = "LoginGER.php";
     $URL2 = "Login.php";
-    include("navigation.php");
+    include("ProductInfoNav.php");
     ?>
 
     <div class="wrapper fadeInDown">

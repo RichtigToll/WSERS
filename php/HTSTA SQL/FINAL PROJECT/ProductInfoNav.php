@@ -3,18 +3,18 @@
     <?php
     if ($_SESSION["Lang"] == "EN") {
     ?>
-        <img src="./images/GLUXeng.png" style="transform: translateX(1%);" text="LuxGovernment" width="21%">
-        <h3>INFO PAGE</h3>
+        <img src="./images/GLUXeng.png" style="transform: translateX(1%); transform: translateY(-10%);" text="LuxGovernment" width="21%">
+        <h3>EXTRA PAGE</h3>
         <div id="alllinks">
-            <a href="Products.php" class="navbarborders">Back</a>
+            <a href="Products.php" class="navbarborders" style="text-decoration: none;">Back</a>
         </div>
     <?php
     } else { ?>
         <div class="navbar">
-            <img src="./images/GLUXger.png" style="transform: translateX(1%);" text="LuxGovernment" width="20%">
-            <h3>INFORMATIONEN</h3>
+            <img src="./images/GLUXger.png" style="transform: translateX(1%); transform: translateY(-10%);" text="LuxGovernment" width="20%">
+            <h3>EXTRA SEITE</h3>
             <div id="alllinks">
-                <a href="ProductsGER.php" class="navbarborders">Zurück</a>
+                <a href="ProductsGER.php" class="navbarborders" style="text-decoration: none;">Zurück</a>
             </div>
         <?php
     }
