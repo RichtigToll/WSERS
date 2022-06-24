@@ -13,6 +13,9 @@ if(!isset($_SESSION["Lang"]))
 }
 
 if(isset($_GET["LANG"])) {
+    if(!in_array($_GET["LANG"], array("EN", "DE"))) {
+        $_GET["LANG"] = "EN";
+    }
     $_SESSION["Lang"] = $_GET["LANG"];
 }
 
