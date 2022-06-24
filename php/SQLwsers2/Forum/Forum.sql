@@ -1,11 +1,10 @@
-drop database FORUMS;
+drop database Forum;
+create Database Forum;
+use Forum;
 
-create database FORUMS;
-use FORUMS;
-
-CREATE TABLE MyMessages(
-    TextsID INT NOT NULL AUTO_INCREMENT,
-    Names VARCHAR(25),
-    Texts VARCHAR(200),
-    PRIMARY KEY (TextsID)
-);
+create Table Text(
+    TextID int not null auto_increment,
+    UserName Varchar(15) not null,
+    UserText  Text not null,
+    Primary Key(TextID)
+)

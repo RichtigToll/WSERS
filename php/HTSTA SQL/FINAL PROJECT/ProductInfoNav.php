@@ -1,14 +1,24 @@
 <div class="navbar">
-<img src="./images/GLUXeng.png" style="transform: translateX(1%);" text="LuxGovernment" width="21%">
-    <h3>INFO PAGE</h3>
-    <div id="alllinks">
-        <a href="Products.php" class="navbarborders">Back</a>
-    </div>
-    <div id="flag">
-        <img id="LanguageLogo" src="./images/SwitchLANG.png" alt="Deutsch">
-        <div class="down">
-            <a href="<?= $URL; ?>"> <img src="./images/German.png" alt="Deutsch" class="FlagSize"></a>
-            <a href="<?= $URL2; ?>" > <img <?php if (isset($FlagSelected)) if ($FlagSelected == "SelectedFlag") { print("id = 'FlagSelected'");} ?> src="./images/English.png" alt="English" class="FlagSize"></a>
+    <img src="./images/GLUXeng.png" style="transform: translateX(1%);" text="LuxGovernment" width="21%">
+    <?php
+    if ($_SESSION["Lang"] == "EN") {
+    ?>
+        <h3>INFO PAGE</h3>
+        <div id="alllinks">
+            <a href="Products.php" class="navbarborders">Back</a>
         </div>
-    </div>
-</div>
+    <?php
+    } else { ?>
+        <div class="navbar">
+            <img src="./images/GLUXger.png" style="transform: translateX(1%);" text="LuxGovernment" width="20%">
+            <h3>INFORMATIONEN</h3>
+            <div id="alllinks">
+                <a href="ProductsGER.php" class="navbarborders">Zurück</a>
+            </div>
+        <?php
+    }
+        ?>
+        <?php
+        include_once("LanguageSelector.php");
+        ?>
+        </div>

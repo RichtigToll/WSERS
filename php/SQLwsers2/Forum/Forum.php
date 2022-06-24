@@ -1,68 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .comment {
-            height: 50px;
-            width: 200px;
-            background-color: red;
-        }
-
-        .comment:nth-child(2n) {
-            height: 50px;
-            width: 200px;
-            background-color: yellow;
-        }
+    div{
+        border: 2px solid red;
+        
+    }
+    .builtdiffrent{
+        background-color: lightblue;
+    }
     </style>
 </head>
-
 <body>
-    <?php
-    $name = "localhost";
-    $user = "root";
-    $pwd = "";
-    $database = "FORUMS";
-    $connection = mysqli_connect($Names, $user, $pwd, $database);
-
-    //Insert Comments
-    if (isset($_POST['myNames'])) {
-        $Names = $_POST['myNames'];
-        $Texts = $_POST['myTexts'];
-        $insert = $connection->prepare("INSERT INTO MyMessages(Names, Texts) VALUES (?, ?)");
-        $insert->bind_param("ss", $Names, $Texts);
+<?php
+      $host="localhost";
+    $user="root";
+    $psw="";
+    $portnu=3306;
+    $database="Forum";
+    $connection= new mysqli($host,$user,$psw,$database,$portnu);
+    $message=0;
+    if(isset($_POST["UserName"])){
+        $name=$_POST["UserName"];
+        $text=$_POST["UserText"];
+        $insert=$connection->prepare("Insert INTO Text(UserName, UserText) Values (?,?)");
+        $insert->bind_param("ss",$name,$text);
         $insert->execute();
+        header("Refresh:0");
+        die();
     }
-
-    //Show MyMessages
-
+$textdisplay=$connection->prepare("SELECT UserName, UserText from Text order by TextID");
+$textdisplay->execute();
+$result=$textdisplay->get_result();
+while($row=$result->fetch_assoc()){ 
+    $message++;
+    if($message%2){
     ?>
-    <div class="comment-section">
-        <?php
-        $commentrows = $connection->prepare("SELECT Names, Texts FROM MyMessages ORDER BY TextssID");
-        $commentrows->execute();
-        $resultMyMessages = $commentrows->get_result();
-        while ($res2 = $resultMyMessages->fetch_assoc()) {
-        ?>
-            <div class="comment">
-                <p class="user"><?= $res2['Names'] ?></p>
-                <p class="message"><?= $res2['Texts'] ?></p>
-            </div>
-        <?php
-        }
-        ?>
-    </div>
-    <form action="" method="POST">
-        <input type="Texts" value="Names" Names="commNames">
-        <input type="Textsarea" value="Comment Texts" Names="commTexts">
-        <input type="submit" value="Send" Names="submitBtn">
-    </form>
-    <script>
-    </script>
-</body>
 
+<div>
+<p><?= $row["UserName"];?></p>
+<p><?= $row["UserText"]?></p>
+</div>
+<?php
+    }
+    else{
+    ?>
+
+<div class="builtdiffrent">
+<p><?= $row["UserName"];?></p>
+<p><?= $row["UserText"]?></p>
+</div>
+<?php
+    }
+}
+    ?>
+    <form method="POST">
+    <input type="text" placeholder="Name" name="UserName">
+    <input type="textarea" placeholder="Your Text" name="UserText">
+    <input type="submit" value="Send" name="Submit">
+    </form>
+</body>
 </html>

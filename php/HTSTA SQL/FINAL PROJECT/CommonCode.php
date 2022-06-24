@@ -7,6 +7,15 @@ if(!isset($_SESSION["UserLoggedIn"])) //If the SESSION UserLoggedIn is not set, 
     //$_SESSION["UserLoggedIn"] = "UserNotLoggedIn"
 }
 
+if(!isset($_SESSION["Lang"])) 
+{
+    $_SESSION["Lang"] = "EN"; 
+}
+
+if(isset($_GET["LANG"])) {
+    $_SESSION["Lang"] = $_GET["LANG"];
+}
+
 
 $host = "localhost";
 $user = "root";
