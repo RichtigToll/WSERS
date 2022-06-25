@@ -3,7 +3,7 @@
     <?php
     if ($_SESSION["Lang"] == "EN") {
     ?>
-        <img src="./images/GLUXeng.png" style="transform: translateX(1%); transform: translateY(-10%);" text="LuxGovernment" width="17%">
+        <img src="./images/GLUXeng.png" id="ShopCardNav" text="LuxGovernment" width="17%">
         <h3>EXTRA PAGE</h3>
         <div id="alllinks">
             <a href="Products.php" class="navbarborders" style="text-decoration: none;">Back</a>

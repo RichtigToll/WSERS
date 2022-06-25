@@ -1,6 +1,7 @@
 <?php
 include_once("CommonCode.php");
 
+
 if ($_SESSION["UserLoggedIn"] == false) {
     print "<script> alert('You are not logged in') </script>";
     print "<script> window.location.href = 'Login.php' </script>";
@@ -19,6 +20,12 @@ if ($_SESSION["UserLoggedIn"] == false) {
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
     <title>Document</title>
+    <style>
+        #ShopCardNav {
+            transform: translateX(-6%);
+        }
+        
+    </style>
 </head>
 
 <body>

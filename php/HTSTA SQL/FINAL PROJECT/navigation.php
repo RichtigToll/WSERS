@@ -8,7 +8,14 @@
         
 <?php if($_SESSION["UserLoggedIn"]){
 ?>
-    <a onclick="document.getElementById('formLogout').submit();" href="#" class="navbarborders">Logout</a>
+<div id="contact">
+    <a class="navbarborders" style="background-color: lightgrey">Account</a>
+        <div class="downtwo">
+        <a href="ShoppingCard.php" id="blacktext" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Login") { print(" active");} ?>">Shopping card</a>
+            <a onclick="document.getElementById('formLogout').submit();" href="#" id="blacktext" class="navbarborders">Logout</a>
+        </div>
+    </div>
+    
 
     <form method="POST" hidden id="formLogout">
         <input type="text" name="LogoutHidden">
