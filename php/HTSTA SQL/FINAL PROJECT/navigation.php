@@ -1,5 +1,5 @@
 <div class="navbar">
-    <img src="./images/GLUXeng.png" style="transform: translateX(1%);" text="LuxGovernment" width="20%" >
+    <img src="./images/GLUXeng.png" style="transform: translateX(1%);" text="LuxGovernment" width="17%" >
     <div id="alllinks">
         <a href="Home.php" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Home") { print("active");} ?>">Home</a>
         <a href="Products.php"  class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Products") { print("active");} ?>">My Products</a>

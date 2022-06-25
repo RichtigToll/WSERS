@@ -1,5 +1,5 @@
 <div class="navbar">
-    <img src="./images/GLUXger.png" style="transform: translateX(1%);" text="LuxGovernment" width="20%">
+    <img src="./images/GLUXger.png" style="transform: translateX(1%);" text="LuxGovernment" width="18%">
     <div id="alllinks">
         <a href="HomeGER.php" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Home") { print("class = active");} ?>">Startseite</a>
         <a href="ProductsGER.php" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Products") { print("class = active");} ?>">Meine Produkte</a>

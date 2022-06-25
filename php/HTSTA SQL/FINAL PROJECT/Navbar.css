@@ -32,6 +32,7 @@ body {
     background-color: white;
     border-radius: 10px;
     position: fixed;
+    z-index: 99;
     width: 100%;
     height: 90px;
     top: 0px;
@@ -651,6 +652,7 @@ h3{
     }
 }
 */
+
 .downtwo a,.register,#top {
     color: white;
 }

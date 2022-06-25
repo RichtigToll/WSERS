@@ -37,6 +37,8 @@ create Table Descriptions (
     FOREIGN KEY (LanID) REFERENCES Languages(LanID)
 );
 
+INSERT INTO Users (UserName, UserPsw) VALUES("Fransch", "$2y$10$rUYDJofyGuxEVB0pKi4w6e3UpD3nSZNBksBFBRS.A24c6E8VkkQ0.");
+
 INSERT INTO Languages (LanID, LanName) VALUES(1, "EN");
 INSERT INTO Languages (LanID, LanName) VALUES(2, "DE");
 
