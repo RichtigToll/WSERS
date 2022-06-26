@@ -23,6 +23,7 @@ create Table Users(
     UserId int not NULL AUTO_INCREMENT,
     UserName varchar(30) UNIQUE,
     UserPsw varchar(255),
+    UserType VARCHAR(25),
     PRIMARY KEY (UserId)
 );
 
@@ -36,8 +37,6 @@ create Table Descriptions (
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
     FOREIGN KEY (LanID) REFERENCES Languages(LanID)
 );
-
-INSERT INTO Users (UserName, UserPsw) VALUES("Fransch", "$2y$10$rUYDJofyGuxEVB0pKi4w6e3UpD3nSZNBksBFBRS.A24c6E8VkkQ0.");
 
 INSERT INTO Languages (LanID, LanName) VALUES(1, "EN");
 INSERT INTO Languages (LanID, LanName) VALUES(2, "DE");
@@ -58,3 +57,6 @@ INSERT INTO Descriptions (DescText, ProductID, LanID, DescText2) VALUES ("SPIELE
 INSERT INTO Descriptions (DescText, ProductID, LanID, DescText2) VALUES ("4K - 120Hz SPIELE!", 2, 2, "Du willst eine PS5 kaufen? Tja pech, gibt es nicht");
 INSERT INTO Descriptions (DescText, ProductID, LanID, DescText2) VALUES ("BESICHTIGE NEUE WELTEN - IN VIRTUAL REALITY!", 3, 2, "Fühlst du dich von der realen Welt depressiv? VERSTECK DICH IN EINER ANDEREN WELT!");
 INSERT INTO Descriptions (DescText, ProductID, LanID, DescText2) VALUES ("ENTDECKE DIE FORZA HORIZON WELT IN ULTRA HD!", 4, 2, "SPIELE DIE BELIEBTESTEN SPIELE WIE FORZA HORIZON 5 IN QHD/120 BILDER PRO SEKUNDE - DAZU NOCH XBOX GAME PASS für 3 MONATE!");
+
+
+INSERT INTO Users (UserName, UserPsw, UserType) VALUES ("LinFr140", "$2y$10$rUYDJofyGuxEVB0pKi4w6e3UpD3nSZNBksBFBRS.A24c6E8VkkQ0.", "Admin");

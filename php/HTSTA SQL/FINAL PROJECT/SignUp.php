@@ -2,12 +2,12 @@
 include_once("CommonCode.php");
 
 if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
-    if($_POST["UserName"] == "" || $_POST["PswOne"] == "") {
+    if ($_POST["UserName"] == "" || $_POST["PswOne"] == "") {
         print "<script>alert('Give a Username/Password')</script>";
         header("Refresh:0");
         die();
     }
-    
+
     if ($_POST["PswOne"] !== $_POST["PswTwo"]) { // If a user didn't rewrite the password correctly
         print "<script>alert('Repeat your password')</script>";
         header("Refresh:0");
@@ -22,16 +22,17 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
 
 
     if ($UserExists == 0) { // There is no data found -> The user doesn't exists
-
+        $row = $resultéieren->fetch_assoc();
         $HashPsw = password_hash($_POST["PswOne"], PASSWORD_DEFAULT); //Hash the password
 
-        $sqlInsert = $connection->prepare("INSERT INTO Users (UserName, UserPsw) VALUES (?,?)"); // prepare the $connection with the commands which are written inside ""
+        $sqlInsert = $connection->prepare("INSERT INTO Users (UserName, UserPsw, UserType) VALUES (?,?,'Normal')"); // prepare the $connection with the commands which are written inside ""
         $sqlInsert->bind_param("ss", $_POST["UserName"], $HashPsw); //ss means string string. You gonna bind what the guy wrote on the inputs and the $HashPsw variable
         $sqlInsert->execute();
 
         $_SESSION["UserName"] = $_POST["UserName"]; //You store the username on the Session
         $_SESSION["UserLoggedIn"] = true; //The User just logged in
         $_SESSION["shoppingcard"] = []; // This creates an empty (shopping cart) array
+        $_SESSION["UserType"] = $row["UserType"];
 
         header("Location: Home.php"); //Redirect to the homepage
         die(); //We don't want run ANYTHING else after the header
@@ -54,7 +55,7 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
 </head>
 
 <body>

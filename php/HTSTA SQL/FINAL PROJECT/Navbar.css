@@ -180,6 +180,7 @@ body {
     animation-duration: 0.4s;  
     animation-name: dropdown;
     animation-fill-mode: forwards;
+    margin-top: -5px;
 }
 
   /* Login / Logout Page */

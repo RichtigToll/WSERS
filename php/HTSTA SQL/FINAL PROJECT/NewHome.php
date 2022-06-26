@@ -13,7 +13,7 @@
 <body>
     <?php
     include("NavigationGeneric.php");
-    BuildNavBar(["Home", "My Products", "About", "Contact", "Form", "Address"], ["Home.php", "Products.php", "About.php", "", "Form.php", "Address.php"], 0, "English");
+    BuildNavBar(["Home", "My Products", "About", "Contact", "Form", "Address"], ["Home.php", "Products.php", "About.php", "", "Form.php", "Address.php"], 0);
     ?>
 
     <!---

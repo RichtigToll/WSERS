@@ -7,6 +7,30 @@ if ($_SESSION["UserLoggedIn"] == false) {
     print "<script> window.location.href = 'Login.php' </script>";
     die();
 }
+
+if (isset($_POST["deleteProduct"])) {
+    if (isset($_SESSION["shoppingcard"][$_POST["deleteProduct"]])) {
+        unset($_SESSION["shoppingcard"][$_POST["deleteProduct"]]);
+    } else {
+        die();
+    }
+}
+
+if (isset($_POST["quantity"], $_POST["quantityProductID"])) {
+    if (!is_numeric($_POST["quantity"])) {
+        die();
+    }
+
+    if (!isset($_SESSION["shoppingcard"][$_POST["quantityProductID"]])) {
+        die();
+    } else {
+        if ($_POST["quantity"] != 0) {
+            $_SESSION["shoppingcard"][$_POST["quantityProductID"]] = $_POST["quantity"];
+        } else {
+            unset($_SESSION["shoppingcard"][$_POST["quantityProductID"]]);
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +48,6 @@ if ($_SESSION["UserLoggedIn"] == false) {
         #ShopCardNav {
             transform: translateX(-6%);
         }
-        
     </style>
 </head>
 
@@ -37,7 +60,7 @@ if ($_SESSION["UserLoggedIn"] == false) {
     include("ProductInfoNav.php");
     ?>
 
-    
+
 
     <section class="h-100 gradient-custom" style="margin-top:100px;">
         <div class="container py-5">
@@ -49,49 +72,66 @@ if ($_SESSION["UserLoggedIn"] == false) {
                         </div>
                         <div class="card-body">
                             <!-- Single item -->
-                            <div class="row">
-                                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                    <!-- Image -->
-                                    <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                                    <img src="./images/<?= $row["ProductImage"] ?>" class="w-100" alt="Blue Jeans Jacket" />
-                                        <a href="#!">
-                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-                                        </a>
-                                    </div>
-                                    <!-- Image -->
-                                </div>
+                            <?php
+                            $totalOrder = 0;
+                            foreach ($_SESSION["shoppingcard"] as $idProduct => $quantity) {
+                                $sqlStatement = $connection->prepare("SELECT * from Products natural join Descriptions where ProductID=? AND LanID=1");
+                                $sqlStatement->bind_param("s", $idProduct);
+                                $sqlStatement->execute();
+                                $result = $sqlStatement->get_result();
 
-                                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                    <!-- Data -->
-                                    <p><strong>Blue denim shirt</strong></p>
-                                    <p>Color: blue</p>
-                                    <p>Size: M</p>
-                                    <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">Delete</button>
-                                    <!-- Data -->
-                                </div>
+                                $row = $result->fetch_assoc();
 
-                                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                                    <!-- Quantity -->
-                                    <div class="d-flex mb-4" style="max-width: 300px">
-                                        <div class="form-outline">
-                                            <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
-                                            <label class="form-label" for="form1">Quantity</label>
+                                $totalOrder = $totalOrder + ($row["Price"] * $quantity);
+                            ?>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                        <!-- Image -->
+                                        <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                            <a href="ProductDetail.php?ProductID=<?= $row["ProductID"] ?>">
+                                                <img src="./images/<?= $row["ProductImage"] ?>" class="w-100" alt="<?= $row["ProductName"] ?>" />
+                                            </a>
                                         </div>
+                                        <!-- Image -->
                                     </div>
-                                    <!-- Quantity -->
 
-                                    <!-- Price -->
-                                    <p class="text-start text-md-center">
-                                        <strong>$17.99</strong>
-                                    </p>
-                                    <!-- Price -->
+
+                                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                        <!-- Data -->
+                                        <p><strong><?= $row["ProductName"] ?></strong></p>
+                                        <form method="POST">
+                                            <input type="hidden" value="<?= $row["ProductID"] ?>" name="deleteProduct">
+                                            <button type="submit" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">Delete</button>
+                                        </form>
+                                        <!-- Data -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                        <!-- Quantity -->
+                                        <div class="d-flex mb-4" style="max-width: 300px">
+                                            <div class="form-outline">
+                                                <form method="POST" id="quantityID<?= $row["ProductID"] ?>">
+                                                    <label class="form-label" for="form1">Quantity</label>
+                                                    <input id="form1" min="0" name="quantity" value="<?= $quantity ?>" type="number" class="form-control" onchange="document.getElementById('quantityID<?= $row['ProductID'] ?>').submit();">
+                                                    <input type="hidden" value="<?= $row["ProductID"] ?>" name="quantityProductID">
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- Quantity -->
+
+                                        <!-- Price -->
+                                        <p class="text-start text-md-center">
+                                            <strong>Price: <?= $row["Price"] ?>€</strong>
+                                        </p>
+                                        <!-- Price -->
+                                    </div>
                                 </div>
-                            </div>
-                    
+                                <hr class="my-4">
+                            <?php
+                            }
+                            ?>
 
-                            <hr class="my-4" />
 
-                           
                             <!-- Single item -->
                         </div>
                     </div>
@@ -113,7 +153,7 @@ if ($_SESSION["UserLoggedIn"] == false) {
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                     Products
-                                    <span>$53.98</span>
+                                    <span><?= $totalOrder ?>€</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                     Shipping
@@ -121,12 +161,12 @@ if ($_SESSION["UserLoggedIn"] == false) {
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                     <div>
-                                        <strong>Total amount</strong>
+                                        <strong>Total:</strong>
                                     </div>
-                                    <span><strong>$53.98</strong></span>
+                                    <span><strong><?= $totalOrder ?>€</strong></span>
                                 </li>
                             </ul>
- 
+
                             <button type="submit" onclick="location.href='https://www.youtube.com/watch?v=KmtzQCSh6xk'" class="btn btn-primary btn-lg btn-block">Checkout</button>
                         </div>
                     </div>

@@ -18,6 +18,7 @@ if (isset($_POST["user"], $_POST["password"])) {
             $_SESSION["UserName"] = $_POST["user"]; //You store the username on the Session
             $_SESSION["UserLoggedIn"] = true; //The User just logged in
             $_SESSION["shoppingcard"] = []; // This creates an empty (shopping cart) array
+            $_SESSION["UserType"] = $row["UserType"];
 
             header("Location: Home.php"); //Redirect to the homepage
             die(); //We don't want run ANYTHING else after the header
@@ -58,7 +59,7 @@ if (isset($_POST["user"], $_POST["password"])) {
             <!-- Tabs Titles -->
 
             <!-- Icon -->
-            <div class="fadeIn first" >
+            <div class="fadeIn first">
                 <h3 style="margin-top: 10px;">Login Page</h3>
             </div>
 

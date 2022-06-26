@@ -13,6 +13,11 @@
         <div class="downtwo">
             <a href="ShoppingCard.php" id="blacktext" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Login") { print(" active");} ?>">Shopping card</a>
             <a href="Forum.php" id="blacktext" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Login") { print(" active");} ?>">Forum</a>
+            <?php if($_SESSION["UserLoggedIn"] == true && $_SESSION["UserType"] == "Admin"){
+                ?>
+                <a href="AdminOrders.php" id="blacktext" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Login") { print(" active");} ?>">Orders</a>
+                <?php
+            } ?>
             <a onclick="document.getElementById('formLogout').submit();" href="#" id="blacktext" class="navbarborders">Logout</a>
         </div>
     </div>
