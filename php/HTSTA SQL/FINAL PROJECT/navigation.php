@@ -11,7 +11,8 @@
 <div id="contact">
     <a class="navbarborders" style="background-color: lightgrey">Account</a>
         <div class="downtwo">
-        <a href="ShoppingCard.php" id="blacktext" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Login") { print(" active");} ?>">Shopping card</a>
+            <a href="ShoppingCard.php" id="blacktext" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Login") { print(" active");} ?>">Shopping card</a>
+            <a href="Forum.php" id="blacktext" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Login") { print(" active");} ?>">Forum</a>
             <a onclick="document.getElementById('formLogout').submit();" href="#" id="blacktext" class="navbarborders">Logout</a>
         </div>
     </div>

@@ -174,7 +174,7 @@ body {
 .downtwo {
     position: relative;
     background-color: white;
-    transform:translateY(12%);
+    transform:translateY(1%);
     border-radius: 30px;
     display: none;
     animation-duration: 0.4s;  

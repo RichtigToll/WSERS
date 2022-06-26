@@ -74,7 +74,7 @@ if (isset($_POST["idOrder"])) { // This if statement is used when the order butt
                 <a style="color: inherit;" target="_blank" href="<?= $row["ProductLink"] ?>">
                     <h2>Price: <?= $row["Price"] ?>€</h2>
                 </a>
-                <p id="InformationProduct">Click on the picture to get more informations</p>
+                <p id="InformationProduct">Click on the picture for more information</p>
                 <a href="ProductDetail.php?ProductID=<?= $row["ProductID"] ?>"> <img src="./images/<?= $row["ProductImage"] ?>" alt="Product"></a>
                 <form method="POST">
                     <input type="hidden" value="<?= $row["ProductID"] ?>" name="idOrder">
