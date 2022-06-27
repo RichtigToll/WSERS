@@ -20,7 +20,7 @@ include_once("CommonCode.php");
     $FlagSelectedGER = "SelectedFlag";
     $URL = "AboutGER.php";
     $URL2 = "About.php";
-    include("navigationGER.php");
+    include("navigation.php");
     ?>
 
     <div id="top">
@@ -35,6 +35,7 @@ include_once("CommonCode.php");
             <h1>Herbst 2021 - Neubearbeitung der "FINAL PROJECT" Webseite</h1>
             <h1>Herbst 2021 - Das Hinzufügen von PHP Code</h1>
             <h1>Winter 2022 - Die zweite Version der Seite</h1>
+            <h1>Frühling 2022 - Das Hinzufügen von SQL</h1>
         </div>
     </div>
 </body>

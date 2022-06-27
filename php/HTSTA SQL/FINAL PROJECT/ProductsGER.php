@@ -20,7 +20,7 @@ include_once("CommonCode.php");
     $FlagSelectedGER = "SelectedFlag";
     $URL = "ProductsGER.php";
     $URL2 = "Products.php";
-    include("navigationGER.php");
+    include("navigation.php");
     ?>
     <div id="top">
         <h1>Neue Produkte!</h1>

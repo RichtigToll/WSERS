@@ -1,5 +1,34 @@
 <?php
 include_once("CommonCode.php");
+
+if (isset($_POST["user"], $_POST["password"])) {
+
+    $sqlState = $connection->prepare("SELECT * FROM Users where UserName = ?"); //Before inserting the user, you gonna select the user to SEE if the user exists
+    $sqlState->bind_param("s", $_POST["user"]); // You bind what the guy wrote
+    $sqlState->execute(); //Execute the Select
+    $resultéieren = $sqlState->get_result(); // Get the result of the Select
+    $UserExists = $resultéieren->num_rows; //You count the rows of the result
+
+
+    if ($UserExists == 1) { //Checks if there is ONLY 1 user with the ONLY 1 username. Depending of how many users you have, you might have more than 1 row
+        $row = $resultéieren->fetch_assoc(); //If the user exists, it copies (fetch) the row to the $row
+
+        if (password_verify($_POST["password"], $row["UserPsw"])) { //You gonna verify what the USER wrote on the INPUT, with the HASHED password on the database
+
+            $_SESSION["UserName"] = $_POST["user"]; //You store the username on the Session
+            $_SESSION["UserLoggedIn"] = true; //The User just logged in
+            $_SESSION["shoppingcard"] = []; // This creates an empty (shopping cart) array
+            $_SESSION["UserType"] = $row["UserType"];
+
+            header("Location: HomeGER.php"); //Redirect to the homepage
+            die(); //We don't want run ANYTHING else after the header
+        } else { // If it doesn't verify
+            echo '<script> alert("Falsches Passwort") </script>'; //alert
+        }
+    } else {
+        echo '<script> alert("Benutzer existiert nicht") </script>';
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,9 +37,11 @@ include_once("CommonCode.php");
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login here</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anmelden</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
 </head>
 
@@ -20,74 +51,33 @@ include_once("CommonCode.php");
     $FlagSelectedGER = "SelectedFlag";
     $URL = "LoginGER.php";
     $URL2 = "Login.php";
-    include("navigationGER.php");
+    include("ProductInfoNav.php");
     ?>
 
-    <?php
-    /*if (isset($_POST["user"], $_POST["password"])) {
-        $filename = "./Database/Users.txt";
-        $NameExistsCheck = fopen($filename, "r");
-        $UserNameFound = false;
-        while (($line = fgets($NameExistsCheck)) !== false) {
-            $Userandpasswordarray = explode(";", $line);
-            if ($_POST["user"] == $Userandpasswordarray[0] && $_POST["password"] == $Userandpasswordarray[1]) {
-                $UserNameFound = true;
-                print("<h3 id='UserExists'>WELCOME / WËLKOMM / WILLKOMMEN</h3>");
-            }
-        }
-        if ($UserNameFound == false) {
-            print("<h3 id='UserNotExists'>Try again / Nach eng kéier probéiere w.e.g. / Bitte nochmal versuchen </h3>");
-            header("Refresh:3");
-        }
-        fclose($NameExistsCheck);
-    } */
-    ?>
-    <form class="Login" method="POST">
-        <h3>Login</h3>
-        <div>
-            <label>Benutzername</label>
-            <input type="text" name="user">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <h3 style="margin-top: 10px;">Dein Konto</h3>
+            </div>
+
+
+            <!-- Login Form -->
+            <form method="POST">
+                <input type="text" class="fadeIn second" name="user" placeholder="Benutzername">
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="Passwort">
+                <input type="submit" class="fadeIn fourth" value="Anmelden">
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                Kein Konto? <a class="underlineHover" href="SignUpGER.php">Regristrieren!</a>
+            </div>
+
         </div>
-        <div>
-            <label>Passwort</label>
-            <input type="password" name="password">
-        </div>
-        <!--<div id="MessageBox">
-            <label>Your question</label>
-            <textarea cols="5" style="width:200px;height:100px;"></textarea>
-        </div>
-        <div class="submit">
-            <input type="submit" value="Login" id="ButtonRegist">
-        </div>-->
-
-        <?php
-
-        session_start();
-        $_SESSION["UserLogin"] = false;
-        if (isset($_SESSION["UserLogin"])) {
-
-            if (isset($_POST["LoginButton"])) {
-                echo '<script> alert("Login successful! / Du bass ageloggt! / Du bist angemeldet!") </script>';
-                $_SESSION["UserLogin"] = true;
-            }
-
-            if (isset($_POST["LogoutButton"])) {
-                echo '<script> alert("You are logged out! / Du goufs ofgemellt! / Du bist abgemeldet!") </script>';
-                $_SESSION["UserLogin"] = false;
-            }
-
-            if ($_SESSION["UserLogin"] == true) { ?>
-                <form method="POST">
-                    <input type="submit" name="LogoutButton" value="Abmelden" id="ColorSubmitProducts" class="ItalicStyle">
-                </form>
-            <?php } else { ?>
-                <form method="POST">
-                    <input type="submit" name="LoginButton" value="Anmelden" id="ColorSubmitProducts">
-                </form>
-        <?php }
-        }
-        ?>
-    </form>
+    </div>
 </body>
 
 </html>

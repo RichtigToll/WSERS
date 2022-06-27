@@ -35,6 +35,7 @@ include_once("CommonCode.php");
             <h1>Autumn 2021 - Restart of the FINAL PROJECT Website</h1>
             <h1>Autumn 2021 - Adding PHP to the FINAL PROJECT Website</h1>
             <h1>Winter 2022 - Second version of FINAL PROJECT</h1>
+            <h1>Spring 2022 - Implementing SQL</h1>
         </div>
     </div>
 </body>

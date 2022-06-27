@@ -20,7 +20,7 @@ include_once("CommonCode.php");
     $FlagSelectedGER = "SelectedFlag";
     $URL = "HomeGER.php";
     $URL2 = "Home.php";
-    include("navigationGER.php");
+    include("navigation.php");
     ?>
     
     <div id="top">

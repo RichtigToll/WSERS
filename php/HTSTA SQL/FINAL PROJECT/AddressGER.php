@@ -19,7 +19,7 @@ include_once("CommonCode.php");
     $FlagSelectedGER = "SelectedFlag";
     $URL = "AddressGER.php";
     $URL2 = "Address.php";
-    include("navigationGER.php");
+    include("navigation.php");
 ?>
 
 <div class="Adressbox">
