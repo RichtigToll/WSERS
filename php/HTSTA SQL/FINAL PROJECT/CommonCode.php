@@ -5,7 +5,6 @@ if(!isset($_SESSION["UserLoggedIn"])) //If the SESSION UserLoggedIn is not set, 
 {
     $_SESSION["UserLoggedIn"] = false; //and make it equal to false
     //$_SESSION["UserLoggedIn"] = "UserNotLoggedIn"
-    $_SESSION["UserType"] = "Normal";
 }
 
 if(!isset($_SESSION["Lang"])) 
