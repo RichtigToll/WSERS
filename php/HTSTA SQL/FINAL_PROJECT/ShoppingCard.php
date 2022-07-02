@@ -40,9 +40,9 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
         header("Refresh:0");
         die();
     } else {
-        $uniqueOrderId = $_SESSION["UserId"] . time(); //creating unique order id
+        $uniqueOrderId = $_SESSION["UserName"] . time(); //creating unique order id
         $sqlInsert12 = $connection->prepare("INSERT into Orders (OrderNumber, UserId) VALUES(?,?)");
-        $sqlInsert12->bind_param("ss", $uniqueOrderId, $_SESSION["UserId"]);
+        $sqlInsert12->bind_param("si", $uniqueOrderId, $_SESSION["UserId"]);
         $sqlInsert12->execute();
 
         foreach ($_SESSION["shoppingcard"] as $idProduct => $quantity) {
@@ -52,7 +52,7 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
         }
 
         $_SESSION["shoppingcard"]  = [];
-        print "<script>alert('You just order')</script>";
+        print "<script>alert('You just ordered')</script>";
         header("Refresh:0");
         die();
     }
@@ -81,8 +81,8 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
     <?php
     $ActivePage = "Products";
     $FlagSelected = "SelectedFlag";
-    $URL = "ProductsGER.php";
-    $URL2 = "Products.php";
+    $URL = "ShoppingCardGER.php";
+    $URL2 = "ShoppingCard.php";
     include("ProductInfoNav.php");
     ?>
 
@@ -163,7 +163,7 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
                     </div>
                     <div class="card mb-4">
                         <div class="card-body">
-                            <p><strong>Expected shipping delivery</strong></p>
+                            <p><strong>For today's order, the expected shipping delivery is between:</strong></p>
                             <p class="mb-0">8.07.2022 - 12.07.2022</p>
                         </div>
                     </div>

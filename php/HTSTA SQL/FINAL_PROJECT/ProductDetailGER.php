@@ -50,9 +50,19 @@ include_once("CommonCode.php");
                         <p style="text-align: center;"> Price: <?= $row["Price"] ?>€</p>
                     </h3>
                     <a> <img src="./images/<?= $row["ProductImage"] ?>" alt="Product" class="ProductStyle"> </a>
-                    <div>
-                        <a href="<?= $row["ProductLink"] ?>"> <input value="Einkaufswagen" type="submit" id="ColorSubmitProducts" class="ItalicStyle"> </a>
-                    </div>
+                    <form method="POST">
+                        <input type="hidden" value="<?= $row["ProductID"] ?>" name="idOrder">
+                        <select name="Quantity">
+                            <?php
+                            for ($i = 1; $i <= 10; $i++) {
+                            ?>
+                                <option value="<?= $i ?>"><?= $i ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <input value="Einkaufswagen" type="submit" id="ColorSubmitProducts" class="ItalicStyle">
+                    </form>
                 </div>
             </div>
 

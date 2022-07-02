@@ -49,10 +49,21 @@ include_once("CommonCode.php");
                         <?= $row["DescText2"] ?> <br><br>
                         <p style="text-align: center;"> Price: <?= $row["Price"] ?>€</p>
                     </h3>
-                    <a> <img src="./images/<?= $row["ProductImage"] ?>" alt="Product" class="ProductStyle"> </a>
-                    <div>
+                        <img src="./images/<?= $row["ProductImage"] ?>" alt="Product"  width="300px">
+                        <br>
+                    <form method="POST">
+                        <input type="hidden" value="<?= $row["ProductID"] ?>" name="idOrder">
+                        <select name="Quantity">
+                            <?php
+                            for ($i = 1; $i <= 10; $i++) {
+                            ?>
+                                <option value="<?= $i ?>"><?= $i ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                         <input value="Shopping card" type="submit" id="ColorSubmitProducts" class="ItalicStyle">
-                    </div>
+                    </form>
                 </div>
             </div>
 

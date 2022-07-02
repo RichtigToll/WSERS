@@ -80,9 +80,9 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
 <body>
     <?php
     $ActivePage = "Products";
-    $FlagSelected = "SelectedFlag";
-    $URL = "ProductsGER.php";
-    $URL2 = "Products.php";
+    $FlagSelectedGER = "SelectedFlag";
+    $URL = "ShoppingCardGER.php";
+    $URL2 = "ShoppingCard.php";
     include("ProductInfoNav.php");
     ?>
 
@@ -163,7 +163,7 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
                     </div>
                     <div class="card mb-4">
                         <div class="card-body">
-                            <p><strong>Erwartete Zulieferung</strong></p>
+                            <p><strong>Bei der heutigen Bestellung ist die erwartete Versandlieferung zwischen dem:</strong></p>
                             <p class="mb-0">8.07.2022 - 12.07.2022</p>
                         </div>
                     </div>

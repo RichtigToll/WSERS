@@ -12,7 +12,7 @@ if ($_SESSION["Lang"] == "EN") {
                                                         } ?>">My Products</a>
             <a href="About.php" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "About") {
                                                             print("active");
-                                                        } ?>">About</a>
+                                                        } ?>">History</a>
             <a href="Address.php" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Address") {
                                                             print("active");
                                                         } ?>">Contact us!</a>
@@ -87,7 +87,7 @@ if ($_SESSION["Lang"] == "EN") {
                                                             } ?>">Meine Produkte</a>
             <a href="AboutGER.php" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "About") {
                                                             print("active");
-                                                        } ?>">Info</a>
+                                                        } ?>">Geschichte</a>
             <a href="AddressGER.php" class="navbarborders <?php if (isset($ActivePage)) if ($ActivePage == "Address") {
                                                                 print("active");
                                                             } ?>">Kontaktieren</a>
