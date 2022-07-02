@@ -164,14 +164,14 @@ include_once("CommonCode.php");
         }
 
     </style>
-    <title>Create a product</title>
+    <title>Erstelle ein Produkt</title>
 </head>
 
 <body>
 
     <?php
     $ActivePage = "CreateProduct";
-    $FlagSelected = "SelectedFlag";
+    $FlagSelectedGER = "SelectedFlag";
     $URL =  "AdminCreateProductGER.php";
     $URL2 = "AdminCreateProduct.php";
     include("ProductInfoNav.php");
@@ -182,45 +182,45 @@ include_once("CommonCode.php");
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3>Create a product</h3>
-                        <p>Fill in the data below</p>
+                        <h3>Erstelle ein Produkt</h3>
+                        <p>Fülle die Informationen aus</p>
                         <form class="requires-validation" novalidate>
-                            <h3>General product information</h3>
+                            <h3>Allgemeine Informationen zum Produkt</h3>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Product name" required>
+                                <input class="form-control" type="text" name="" placeholder="Produkt Name" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Product image" required>
+                                <input class="form-control" type="text" name="" placeholder="Produkt Bild" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Price" required>
+                                <input class="form-control" type="text" name="" placeholder="Preis" required>
                             </div>
                             <br>
 
                             <!-- DESCRIPTION -->
 
-                            <h3>In English: </h3>
+                            <h3>Auf Englisch: </h3>
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Upper description" required>
+                                <input class="form-control" type="text" name="" placeholder="Obere Beschreibung" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Lower description" required>
+                                <input class="form-control" type="text" name="" placeholder="Untere Beschreibung" required>
                             </div>
                             <br>
 
                             <!-- DESCRIPTION BUT DIFFERENT LANGUAGE -->
 
-                            <h3>In German: </h3>
+                            <h3>Auf Deutsch: </h3>
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Upper description" required>
+                                <input class="form-control" type="text" name="" placeholder="Obere Beschreibung" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Lower description" required>
+                                <input class="form-control" type="text" name="" placeholder="Untere Beschreibung" required>
                             </div>
 
                             <div class="form-button mt-3">

@@ -3,8 +3,8 @@ include_once("CommonCode.php");
 
 
 if ($_SESSION["UserLoggedIn"] == false) {
-    print "<script> alert('You are not logged in') </script>";
-    print "<script> window.location.href = 'Login.php' </script>";
+    print "<script> alert('Du bist nicht angemeldet') </script>";
+    print "<script> window.location.href = 'LoginGER.php' </script>";
     die();
 }
 
@@ -36,13 +36,13 @@ if (isset($_POST["quantity"], $_POST["quantityProductID"])) {
 if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
 
     if (count($_SESSION["shoppingcard"]) == 0) {
-        print "<script>alert('Your shoppingcard is empty')</script>";
+        print "<script>alert('Dein Einkaufswagen ist leer')</script>";
         header("Refresh:0");
         die();
     } else {
-        $uniqueOrderId = $_SESSION["UserId"] . time(); //creating unique order id
+        $uniqueOrderId = $_SESSION["UserName"] . time(); //creating unique order id
         $sqlInsert12 = $connection->prepare("INSERT into Orders (OrderNumber, UserId) VALUES(?,?)");
-        $sqlInsert12->bind_param("ss", $uniqueOrderId, $_SESSION["UserId"]);
+        $sqlInsert12->bind_param("si", $uniqueOrderId, $_SESSION["UserId"]);
         $sqlInsert12->execute();
 
         foreach ($_SESSION["shoppingcard"] as $idProduct => $quantity) {
@@ -52,7 +52,7 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
         }
 
         $_SESSION["shoppingcard"]  = [];
-        print "<script>alert('You just order')</script>";
+        print "<script>alert('Bestellung erfolgreich!')</script>";
         header("Refresh:0");
         die();
     }
@@ -69,7 +69,7 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
     <script src="./Bootstrap/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
-    <title>Document</title>
+    <title>Einkaufswagen</title>
     <style>
         #ShopCardNav {
             transform: translateX(-6%);

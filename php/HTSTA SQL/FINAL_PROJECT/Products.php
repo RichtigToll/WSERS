@@ -38,9 +38,7 @@ include_once("CommonCode.php");
 
             <div class="thisproduct">
                 <h1><?= $row["ProductName"] ?></h1>
-                <a style="color: inherit;" target="_blank" href="<?= $row["ProductLink"] ?>">
                     <h2>Price: <?= $row["Price"] ?>€</h2>
-                </a>
                 <p id="InformationProduct">Click on the picture for more information</p>
                 <a href="ProductDetail.php?ProductID=<?= $row["ProductID"] ?>"> <img src="./images/<?= $row["ProductImage"] ?>" alt="Product" width="300px" ></a>
                 <form method="POST">

@@ -25,6 +25,8 @@ if ($_SESSION["Lang"] == "EN") {
                         <?php if ($_SESSION["UserType"] == "Admin") {
                         ?>
                             <a href="AdminOrders.php" id="blacktext" class="navbarborders">Orders</a>
+                            <a href="AdminCreateProduct.php" id="blacktext" class="navbarborders">New product</a>
+                            
                         <?php
                         } ?>
                         <a onclick="document.getElementById('formLogout').submit();" href="#" id="blacktext" class="navbarborders">Logout</a>

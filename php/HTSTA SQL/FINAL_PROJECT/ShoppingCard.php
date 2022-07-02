@@ -52,7 +52,7 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
         }
 
         $_SESSION["shoppingcard"]  = [];
-        print "<script>alert('You just ordered')</script>";
+        print "<script>alert('Order successful')</script>";
         header("Refresh:0");
         die();
     }
@@ -69,7 +69,7 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
     <script src="./Bootstrap/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
-    <title>Document</title>
+    <title>Shopping card</title>
     <style>
         #ShopCardNav {
             transform: translateX(-6%);
@@ -85,8 +85,6 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
     $URL2 = "ShoppingCard.php";
     include("ProductInfoNav.php");
     ?>
-
-
 
     <section class="h-100 gradient-custom" style="margin-top:100px;">
         <div class="container py-5">
