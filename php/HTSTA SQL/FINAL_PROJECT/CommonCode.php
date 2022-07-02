@@ -81,10 +81,16 @@ if (isset($_POST["idOrder"])) { // This if statement is used when the order butt
 
 
 // Code below: ShoppingCard.php
-/*
+
 if ($_SESSION["UserLoggedIn"] == false) {
-    print "<script> alert('You are not logged in') </script>";
-    print "<script> window.location.href = 'Login.php' </script>";
+
+    if($_SESSION["Lang"] == "EN"){
+        print "<script> alert('You are not logged in') </script>";
+        print "<script> window.location.href = 'Login.php' </script>";
+    }else{
+        print "<script> alert('Du bist nicht angemeldet') </script>";
+        print "<script> window.location.href = 'LoginGER.php' </script>";
+    }
     die();
 }
 
@@ -116,9 +122,17 @@ if (isset($_POST["quantity"], $_POST["quantityProductID"])) {
 if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
 
     if (count($_SESSION["shoppingcard"]) == 0) {
-        print "<script>alert('Your shoppingcard is empty')</script>";
-        header("Refresh:0");
+
+        if($_SESSION["Lang"] == "EN"){
+            print "<script>alert('Your shoppingcard is empty')</script>";
+            print '<script>window.location.href = "ShoppingCard.php";</script>';
+        }else{
+            print "<script>alert('Dein Einkaufswagen ist leer')</script>";
+            print '<script>window.location.href = "ShoppingCardGER.php";</script>';
+        }
+        //header("Refresh:0");
         die();
+
     } else {
         $uniqueOrderId = $_SESSION["UserName"] . time(); //creating unique order id
         $sqlInsert12 = $connection->prepare("INSERT into Orders (OrderNumber, UserId) VALUES(?,?)");
@@ -132,9 +146,15 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
         }
 
         $_SESSION["shoppingcard"]  = [];
-        print "<script>alert('Order successful')</script>";
-        header("Refresh:0");
+
+        if($_SESSION["Lang"] == "EN"){
+            print "<script>alert('Order successful')</script>";
+            print '<script>window.location.href = "ShoppingCard.php";</script>';
+        }else{
+            print "<script>alert('Bestellung erfolgreich')</script>";
+            print '<script>window.location.href = "ShoppingCardGER.php";</script>';
+        }
+        //header("Refresh:0");
         die();
     }
 }
-*/
