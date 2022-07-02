@@ -49,9 +49,9 @@ include_once("CommonCode.php");
                         <?= $row["DescText2"] ?> <br><br>
                         <p style="text-align: center;"> Price: <?= $row["Price"] ?>€</p>
                     </h3>
-                    <a> <img src="<?= $row["ProductImage"] ?>" alt="Product" class="ProductStyle"> </a>
+                    <a> <img src="./images/<?= $row["ProductImage"] ?>" alt="Product" class="ProductStyle"> </a>
                     <div>
-                        <a href="<?= $row["ProductLink"] ?>"> <input value="Shopping Cart" type="submit" id="ColorSubmitProducts" class="ItalicStyle"> </a>
+                        <input value="Shopping card" type="submit" id="ColorSubmitProducts" class="ItalicStyle">
                     </div>
                 </div>
             </div>
@@ -59,8 +59,6 @@ include_once("CommonCode.php");
 
     <?php
         }
-
-
     } else {
         die("Hacker");
     }

@@ -19,6 +19,7 @@ if (isset($_POST["user"], $_POST["password"])) {
             $_SESSION["UserLoggedIn"] = true; //The User just logged in
             $_SESSION["shoppingcard"] = []; // This creates an empty (shopping cart) array
             $_SESSION["UserType"] = $row["UserType"];
+            $_SESSION["UserId"] = $row["UserId"];
 
             header("Location: Home.php"); //Redirect to the homepage
             die(); //We don't want run ANYTHING else after the header

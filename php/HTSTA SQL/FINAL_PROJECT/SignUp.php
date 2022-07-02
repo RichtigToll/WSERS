@@ -29,16 +29,25 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
         $sqlInsert->bind_param("ss", $_POST["UserName"], $HashPsw); //ss means string string. You gonna bind what the guy wrote on the inputs and the $HashPsw variable
         $sqlInsert->execute();
 
+        //Get the ID of the user that we just inserted
+        $sqlID = $connection->prepare("SELECT UserId from Users ORDER BY UserId DESC LIMIT 1");
+        $sqlID->execute();
+        $result = $sqlID->get_result();
+        $row = $result->fetch_assoc();
+
         $_SESSION["UserName"] = $_POST["UserName"]; //You store the username on the Session
         $_SESSION["UserLoggedIn"] = true; //The User just logged in
         $_SESSION["shoppingcard"] = []; // This creates an empty (shopping cart) array
-        $_SESSION["UserType"] = $row["UserType"];
+        $_SESSION["UserType"] = 'Normal';
+        $_SESSION["UserId"] = $row["UserId"];
 
         header("Location: Home.php"); //Redirect to the homepage
         die(); //We don't want run ANYTHING else after the header
 
     } else {
         echo '<script> alert("User already exist") </script>';
+        header("Refresh:0");
+        die();
     }
 }
 

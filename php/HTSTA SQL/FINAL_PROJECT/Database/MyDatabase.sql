@@ -21,7 +21,7 @@ create Table Languages (
 
 create Table Users(
     UserId int not NULL AUTO_INCREMENT,
-    UserName varchar(30) UNIQUE,
+    UserName varchar(255) UNIQUE,
     UserPsw varchar(255),
     UserType VARCHAR(25),
     PRIMARY KEY (UserId)
@@ -36,6 +36,25 @@ create Table Descriptions (
     PRIMARY KEY (DescID),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
     FOREIGN KEY (LanID) REFERENCES Languages(LanID)
+);
+
+create Table Orders(
+    OrderNumber VARCHAR(255),
+    UserId INT,
+    ListNumber VARCHAR(255),
+    PRIMARY KEY(OrderNumber),
+    FOREIGN KEY(UserId) REFERENCES Users(UserId)
+);
+
+
+create Table OrderList(
+    ListNumber INT NOT NULL AUTO_INCREMENT,
+    OrderNumber VARCHAR(255),
+    ProductID INT,
+    ProductQuantity INT,
+    PRIMARY KEY(ListNumber),
+    FOREIGN KEY(OrderNumber) REFERENCES Orders(OrderNumber),
+    FOREIGN KEY(ProductID) REFERENCES Products(ProductID)
 );
 
 INSERT INTO Languages (LanID, LanName) VALUES(1, "EN");

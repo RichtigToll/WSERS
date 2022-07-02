@@ -14,7 +14,7 @@ if (isset($_POST["idOrder"])) { // This if statement is used when the order butt
                 if ($_POST["Quantity"] < 1 || $_POST["Quantity"] > 10) { // IF is-s smaller than 1 or bigger than 10, then die
                     die();
                 }
-            }else{
+            } else {
                 die(); // If it-s not NUMERIC, die
             }
 
@@ -25,11 +25,11 @@ if (isset($_POST["idOrder"])) { // This if statement is used when the order butt
                 $_SESSION["shoppingcard"] += [$_POST["idOrder"] => $_POST["Quantity"]]; //here the product is not inside the shopping cart yet
             }
         } else {
-            die();// IF the product was not found it should die, which means the input that is hidden, its value was changed so die
+            die(); // IF the product was not found it should die, which means the input that is hidden, its value was changed so die
         }
     } else {
-        echo "<script> alert('You are not logged In'); </script>";
-        header("Refresh:0");
+        echo "<script> alert('You are not logged In'); window.location = window.location.href; </script>";
+        // header("Refresh:0");
         die();
     }
 }
@@ -87,7 +87,7 @@ if (isset($_POST["idOrder"])) { // This if statement is used when the order butt
                         }
                         ?>
                     </select>
-                    <input value="Order" type="submit" id="ColorSubmitProducts" class="ItalicStyle">
+                    <input value="Shopping card" type="submit" id="ColorSubmitProducts" class="ItalicStyle">
                 </form>
             </div>
 

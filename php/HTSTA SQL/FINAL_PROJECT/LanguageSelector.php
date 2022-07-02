@@ -1,5 +1,5 @@
 <div id="flag">
-    <img id="LanguageLogo" src="./images/LANG.png" alt="Deutsch">
+    <img id="LanguageLogo" src="./images/LANG.png">
     <div class="down">
         <?php 
             if(isset($_GET["ProductID"])){

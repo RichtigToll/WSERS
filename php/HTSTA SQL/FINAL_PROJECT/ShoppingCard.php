@@ -31,6 +31,32 @@ if (isset($_POST["quantity"], $_POST["quantityProductID"])) {
         }
     }
 }
+
+
+if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
+
+    if (count($_SESSION["shoppingcard"]) == 0) {
+        print "<script>alert('Your shoppingcard is empty')</script>";
+        header("Refresh:0");
+        die();
+    } else {
+        $uniqueOrderId = $_SESSION["UserId"] . time(); //creating unique order id
+        $sqlInsert12 = $connection->prepare("INSERT into Orders (OrderNumber, UserId) VALUES(?,?)");
+        $sqlInsert12->bind_param("ss", $uniqueOrderId, $_SESSION["UserId"]);
+        $sqlInsert12->execute();
+
+        foreach ($_SESSION["shoppingcard"] as $idProduct => $quantity) {
+            $sqlInsert13 = $connection->prepare("INSERT into OrderList(ProductID, ProductQuantity, OrderNumber) VALUES(?,?,?)");
+            $sqlInsert13->bind_param("iis", $idProduct, $quantity, $uniqueOrderId);
+            $sqlInsert13->execute();
+        }
+
+        $_SESSION["shoppingcard"]  = [];
+        print "<script>alert('You just order')</script>";
+        header("Refresh:0");
+        die();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +65,8 @@ if (isset($_POST["quantity"], $_POST["quantityProductID"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="./Bootstrap/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="./Bootstrap/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
     <title>Document</title>
@@ -157,7 +183,7 @@ if (isset($_POST["quantity"], $_POST["quantityProductID"])) {
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                     Shipping
-                                    <span>Gratis</span>
+                                    <span>Free</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                     <div>
@@ -167,7 +193,10 @@ if (isset($_POST["quantity"], $_POST["quantityProductID"])) {
                                 </li>
                             </ul>
 
-                            <button type="submit" onclick="location.href='https://www.youtube.com/watch?v=KmtzQCSh6xk'" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                            <form method="POST">
+                                <button name="FinishOrder" type="submit" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
