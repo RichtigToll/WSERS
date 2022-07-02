@@ -2,6 +2,48 @@
 
 include_once("CommonCode.php");
 
+// Check if he is logged in and if he is an Admin
+if ($_SESSION["UserLoggedIn"] == false) {
+    print "<script>alert('You are not logged in');</script>";
+    print '<script>window.location.href = "Home.php";</script>';
+    die();
+}
+
+if ($_SESSION["UserType"] != "Admin") {
+    print "<script>alert('You are not an Admin');</script>";
+    print '<script>window.location.href = "Home.php";</script>';
+    die();
+}
+
+// Create a product 
+
+if (isset($_POST["Productname"], $_POST["IMGname"], $_POST["Price"], $_POST["UpperdescriptionEN"], $_POST["LowerdescriptionEN"], $_POST["UpperdescriptionGER"], $_POST["LowerdescriptionGER"])) {
+    //Getting the last used ID then +1 so i can use for the id descriptions
+    $lastID = $connection->prepare("SELECT ProductID from Products ORDER BY ProductID DESC LIMIT 1");
+    $lastID->execute();
+    $result = $lastID->get_result();
+    $row = $result->fetch_assoc();
+    $lastproductID = $row["ProductID"] + 1; //+1 bcs the next
+
+    //Common product info
+    $productInsert = $connection->prepare("INSERT INTO Products (ProductName, ProductImage, Price) VALUES (?,?,?)");
+    $productInsert->bind_param("ssi", $_POST["Productname"], $_POST["IMGname"], $_POST["Price"]);
+    $productInsert->execute();
+
+    //English Description
+    $EnDesc = $connection->prepare("INSERT INTO Descriptions (DescText, ProductID, LanID, DescText2) VALUES (?,?,1,?)");
+    $EnDesc->bind_param("sis", $_POST["UpperdescriptionEN"], $lastproductID, $_POST["LowerdescriptionEN"]);
+    $EnDesc->execute();
+
+    //German Description
+    $GerDesc = $connection->prepare("INSERT INTO Descriptions (DescText, ProductID, LanID, DescText2) VALUES (?,?,2,?)");
+    $GerDesc->bind_param("sis", $_POST["UpperdescriptionGER"], $lastproductID, $_POST["LowerdescriptionGER"]);
+    $GerDesc->execute();
+
+    print "<script>alert('Product has been created')</script>";
+    header("Refresh:0");
+    die();
+}
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +127,7 @@ include_once("CommonCode.php");
 
         .form-content input[type=text],
         .form-content input[type=password],
-        .form-content input[type=email],
+        .form-content input[type=number],
         .form-content select {
             width: 100%;
             padding: 9px 20px;
@@ -163,6 +205,9 @@ include_once("CommonCode.php");
             width: 97%;
         }
 
+        #MoveRightNumber{
+            margin-left: 5px;
+        }
     </style>
     <title>Create a product</title>
 </head>
@@ -171,12 +216,11 @@ include_once("CommonCode.php");
 
     <?php
     $ActivePage = "CreateProduct";
-    $FlagSelected = "SelectedFlag";
-    $URL =  "AdminCreateProductGER.php";
+    $URL =  "AdminCreateProduct.php";
     $URL2 = "AdminCreateProduct.php";
     include("ProductInfoNav.php");
     ?>
-    
+
     <div class="form-body" id="SpaceDivNav">
         <div class="row">
             <div class="form-holder">
@@ -184,19 +228,19 @@ include_once("CommonCode.php");
                     <div class="form-items">
                         <h3>Create a product</h3>
                         <p>Fill in the data below</p>
-                        <form class="requires-validation" novalidate>
+                        <form method="POST">
                             <h3>General product information</h3>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Product name" required>
+                                <input class="form-control" type="text" name="Productname" placeholder="Product name" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Product image" required>
+                                <input class="form-control" type="text" name="IMGname" placeholder="Image link - [Example: bla.jpg]" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Price" required>
+                                <input id="MoveRightNumber" class="form-control" type="number" name="Price" placeholder="Price" required>
                             </div>
                             <br>
 
@@ -204,11 +248,11 @@ include_once("CommonCode.php");
 
                             <h3>In English: </h3>
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Upper description" required>
+                                <input class="form-control" type="text" name="UpperdescriptionEN" placeholder="Upper description" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Lower description" required>
+                                <input class="form-control" type="text" name="LowerdescriptionEN" placeholder="Lower description" required>
                             </div>
                             <br>
 
@@ -216,11 +260,11 @@ include_once("CommonCode.php");
 
                             <h3>In German: </h3>
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Upper description" required>
+                                <input class="form-control" type="text" name="UpperdescriptionGER" placeholder="Upper description" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="" placeholder="Lower description" required>
+                                <input class="form-control" type="text" name="LowerdescriptionGER" placeholder="Lower description" required>
                             </div>
 
                             <div class="form-button mt-3">

@@ -5,7 +5,7 @@ use MyProducts;
 
 create Table Products (
     ProductID int not null AUTO_INCREMENT,
-    ProductName varchar(30),
+    ProductName varchar(100),
     ProductImage varchar(100),
     Price int,
     PRIMARY KEY (ProductID)

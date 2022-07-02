@@ -1,5 +1,17 @@
 <?php
 include_once("CommonCode.php");
+
+if ($_SESSION["UserLoggedIn"] == false) {
+
+    if($_SESSION["Lang"] == "EN"){
+        print "<script> alert('You are not logged in') </script>";
+        print "<script> window.location.href = 'Login.php' </script>";
+    }else{
+        print "<script> alert('Du bist nicht angemeldet') </script>";
+        print "<script> window.location.href = 'LoginGER.php' </script>";
+    }
+    die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

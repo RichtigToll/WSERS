@@ -14,11 +14,10 @@ if ($_SESSION["Lang"] == "EN") {
                     <a class="navbarborders" style="background-color: lightgrey"><?= $_SESSION["UserName"] ?></a>
                     <div class="downtwo">
                         <a href="ShoppingCard.php" id="blacktext" class="navbarborders">Shopping card</a>
-                        <?php if ($_SESSION["UserType"] == "Admin") {
+                        <?php if ($_SESSION["UserType"] == "Admin") { // ONLY if the user is an admin, show these 2 buttons
                         ?>
                             <a href="AdminOrders.php" id="blacktext" class="navbarborders">Orders</a>
                             <a href="AdminCreateProduct.php" id="blacktext" class="navbarborders">New product</a>
-                            
                         <?php
                         } ?>
                         <a onclick="document.getElementById('formLogout').submit();" href="#" id="blacktext" class="navbarborders">Logout</a>
@@ -69,6 +68,7 @@ if ($_SESSION["Lang"] == "EN") {
                         <a href="ShoppingCardGER.php" id="blacktext" class="navbarborders">Einkaufswagen</a>
                         <?php if ($_SESSION["UserType"] == "Admin") { ?>
                             <a href="AdminOrdersGER.php" id="blacktext" class="navbarborders">Bestellungen</a>
+                            <a href="AdminCreateProductGER.php" id="blacktext" class="navbarborders">Neues Produkt</a>
                         <?php } ?>
                         <a onclick="document.getElementById('formLogoutTwo').submit();" href="#" id="blacktext" class="navbarborders">Abmelden</a>
                     </div>

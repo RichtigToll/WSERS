@@ -82,18 +82,6 @@ if (isset($_POST["idOrder"])) { // This if statement is used when the order butt
 
 // Code below: ShoppingCard.php
 
-if ($_SESSION["UserLoggedIn"] == false) {
-
-    if($_SESSION["Lang"] == "EN"){
-        print "<script> alert('You are not logged in') </script>";
-        print "<script> window.location.href = 'Login.php' </script>";
-    }else{
-        print "<script> alert('Du bist nicht angemeldet') </script>";
-        print "<script> window.location.href = 'LoginGER.php' </script>";
-    }
-    die();
-}
-
 if (isset($_POST["deleteProduct"])) {
     if (isset($_SESSION["shoppingcard"][$_POST["deleteProduct"]])) {
         unset($_SESSION["shoppingcard"][$_POST["deleteProduct"]]);
