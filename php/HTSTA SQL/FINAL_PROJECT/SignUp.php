@@ -41,12 +41,12 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
         $_SESSION["UserType"] = 'Normal';
         $_SESSION["UserId"] = $row["UserId"];
 
-        header("Location: Home.php"); //Redirect to the homepage
+        print '<script>window.location.href = "Home.php";</script>'; //Redirect to the homepage
         die(); //We don't want run ANYTHING else after the header
 
     } else {
         echo '<script> alert("User already exist") </script>';
-        header("Refresh:0");
+        print '<script>window.location.href = "SignUp.php";</script>';
         die();
     }
 }

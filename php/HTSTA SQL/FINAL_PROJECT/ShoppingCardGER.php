@@ -134,7 +134,7 @@ if ($_SESSION["UserLoggedIn"] == false) {
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                    Produkte
+                                    Produkt/e
                                     <span><?= $totalOrder ?>€</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center px-0">

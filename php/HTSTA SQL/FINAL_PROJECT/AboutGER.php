@@ -26,7 +26,7 @@ include_once("CommonCode.php");
 
     <div id="top">
         <div>
-            <h1 id="BigTextAbout">Die Geschichte von der "FINAL PROJECT" Webseite</h1>
+            <h1 id="BigTextAbout">Die Geschichte hinter "FINAL PROJECT"</h1>
         </div>
         <div>
             <h1>Sommer 2019 - Das Erlenen von HTML</h1>

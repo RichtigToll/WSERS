@@ -8,37 +8,45 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
         die();
     }
 
-    if ($_POST["PswOne"] !== $_POST["PswTwo"]) { // If a user didn't rewrite the password correctly
+    if ($_POST["PswOne"] !== $_POST["PswTwo"]) {
         print "<script>alert('Wiederhole dein Passwort')</script>";
         header("Refresh:0");
         die();
     }
 
-    $sqlState = $connection->prepare("SELECT * FROM Users where UserName = ?"); //35 -> Before inserting the user, you gonna select the user to SEE if the user exists
-    $sqlState->bind_param("s", $_POST["UserName"]); // You bind what the guy wrote
-    $sqlState->execute(); //Execute the Select
-    $resultéieren = $sqlState->get_result(); // Get the result of the Select
-    $UserExists = $resultéieren->num_rows; //You count the rows of the result
+    $sqlState = $connection->prepare("SELECT * FROM Users where UserName = ?");
+    $sqlState->bind_param("s", $_POST["UserName"]);
+    $sqlState->execute();
+    $resultéieren = $sqlState->get_result(); 
+    $UserExists = $resultéieren->num_rows;
 
 
-    if ($UserExists == 0) { // There is no data found -> The user doesn't exists
+    if ($UserExists == 0) {
         $row = $resultéieren->fetch_assoc();
-        $HashPsw = password_hash($_POST["PswOne"], PASSWORD_DEFAULT); //Hash the password
+        $HashPsw = password_hash($_POST["PswOne"], PASSWORD_DEFAULT);
 
-        $sqlInsert = $connection->prepare("INSERT INTO Users (UserName, UserPsw, UserType) VALUES (?,?,'Normal')"); // prepare the $connection with the commands which are written inside ""
-        $sqlInsert->bind_param("ss", $_POST["UserName"], $HashPsw); //ss means string string. You gonna bind what the guy wrote on the inputs and the $HashPsw variable
+        $sqlInsert = $connection->prepare("INSERT INTO Users (UserName, UserPsw, UserType) VALUES (?,?,'Normal')");
+        $sqlInsert->bind_param("ss", $_POST["UserName"], $HashPsw);
         $sqlInsert->execute();
 
-        $_SESSION["UserName"] = $_POST["UserName"]; //You store the username on the Session
-        $_SESSION["UserLoggedIn"] = true; //The User just logged in
-        $_SESSION["shoppingcard"] = []; // This creates an empty (shopping cart) array
-        $_SESSION["UserType"] = $row["UserType"];
+        $sqlID = $connection->prepare("SELECT UserId from Users ORDER BY UserId DESC LIMIT 1");
+        $sqlID->execute();
+        $result = $sqlID->get_result();
+        $row = $result->fetch_assoc();
 
-        header("Location: HomeGER.php"); //Redirect to the homepage
-        die(); //We don't want run ANYTHING else after the header
+        $_SESSION["UserName"] = $_POST["UserName"];
+        $_SESSION["UserLoggedIn"] = true;
+        $_SESSION["shoppingcard"] = [];
+        $_SESSION["UserType"] = 'Normal';
+        $_SESSION["UserId"] = $row["UserId"];
+
+        print '<script>window.location.href = "HomeGER.php";</script>';
+        die();
 
     } else {
-        echo '<script> alert("Benutzername schon vergeben") </script>';
+        echo '<script> alert("Benutzer existiert schon") </script>';
+        print '<script>window.location.href = "SignUpGER.php";</script>';
+        die();
     }
 }
 

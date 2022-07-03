@@ -34,28 +34,35 @@ if ($_SESSION["UserType"] != "Admin") {
     $URL =  "AdminOrders.php";
     $URL2 = "AdminOrders.php";
     include("ProductInfoNav.php");
+
+    $sqlStatement = $connection->prepare("SELECT * FROM OrdersALL");
+    $sqlStatement->execute();
+    $result = $sqlStatement->get_result();
     ?>
 
     <table class="table align-middle" style="margin-top: 4%; background-color: white;">
         <thead>
             <tr>
                 <!-- Titles -->
-                <th>OrderID</th>
+                <th>Order number</th>
                 <th>User</th>
-                <th>Product</th>
-                <th>Delete</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <!-- Column -->
-                <th>16464</th>
-                <td>UserName</td>
-                <td>XBOX</td>
-                <td>
-                    <button type="submit" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">Delete</button>
-                </td>
-            </tr>
+            <?php
+            while ($row = $result->fetch_assoc()) {
+            ?>
+                <tr>
+                    <!-- Column -->
+                    <th><?= $row["OrderNumber"] ?></th>
+                    <td><?= $row["UserName"] ?></td>
+                    <td><?= $row["TotalOrder"] ?>€</td>
+                </tr>
+            <?php
+            }
+            ?>
+
         </tbody>
     </table>
 </body>

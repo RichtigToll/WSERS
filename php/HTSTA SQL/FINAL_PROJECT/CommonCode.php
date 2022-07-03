@@ -7,6 +7,8 @@ if (!isset($_SESSION["UserLoggedIn"])) //If the SESSION UserLoggedIn is not set,
     //$_SESSION["UserLoggedIn"] = "UserNotLoggedIn"
 }
 
+//LANGUAGE
+
 if (!isset($_SESSION["Lang"])) {
     $_SESSION["Lang"] = "EN";
 }
@@ -18,6 +20,8 @@ if (isset($_GET["LANG"])) {
     $_SESSION["Lang"] = $_GET["LANG"];
 }
 
+//If the user Logout
+
 if (isset($_POST["LogoutHidden"])) {
     echo "<script> alert('Goodbye! // Auf Wiedersehen!'); </script>";
     session_unset();
@@ -26,6 +30,8 @@ if (isset($_POST["LogoutHidden"])) {
 
     die();
 }
+
+//Database connection
 
 $host = "localhost";
 $user = "root";
@@ -67,10 +73,10 @@ if (isset($_POST["idOrder"])) { // This if statement is used when the order butt
             die(); // IF the product was not found it should die, which means the input that is hidden, its value was changed so die
         }
     } else {
-        if($_SESSION["Lang"] == "EN"){
+        if ($_SESSION["Lang"] == "EN") {
             echo "<script> alert('You are not logged in'); </script>";
             print '<script>window.location.href = "Login.php";</script>';
-        }else{
+        } else {
             echo "<script> alert('Du bist nicht angemeldet'); </script>";
             print '<script>window.location.href = "LoginGER.php";</script>';
         }
@@ -111,16 +117,15 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
 
     if (count($_SESSION["shoppingcard"]) == 0) {
 
-        if($_SESSION["Lang"] == "EN"){
-            print "<script>alert('Your shoppingcard is empty')</script>";
+        if ($_SESSION["Lang"] == "EN") {
+            print "<script>alert('Your shopping card is empty')</script>";
             print '<script>window.location.href = "ShoppingCard.php";</script>';
-        }else{
+        } else {
             print "<script>alert('Dein Einkaufswagen ist leer')</script>";
             print '<script>window.location.href = "ShoppingCardGER.php";</script>';
         }
         //header("Refresh:0");
         die();
-
     } else {
         $uniqueOrderId = $_SESSION["UserName"] . time(); //creating unique order id
         $sqlInsert12 = $connection->prepare("INSERT into Orders (OrderNumber, UserId) VALUES(?,?)");
@@ -135,10 +140,10 @@ if (isset($_POST["FinishOrder"]) && $_SESSION["UserLoggedIn"] == true) {
 
         $_SESSION["shoppingcard"]  = [];
 
-        if($_SESSION["Lang"] == "EN"){
-            print "<script>alert('Order successful')</script>";
+        if ($_SESSION["Lang"] == "EN") {
+            print "<script>alert('Your order was successful')</script>";
             print '<script>window.location.href = "ShoppingCard.php";</script>';
-        }else{
+        } else {
             print "<script>alert('Bestellung erfolgreich')</script>";
             print '<script>window.location.href = "ShoppingCardGER.php";</script>';
         }

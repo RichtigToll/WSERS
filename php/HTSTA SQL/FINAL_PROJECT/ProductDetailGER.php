@@ -50,7 +50,8 @@ include_once("CommonCode.php");
                         <?= $row["DescText2"] ?> <br><br>
                         <p style="text-align: center;"> Price: <?= $row["Price"] ?>€</p>
                     </h3>
-                    <a> <img src="./images/<?= $row["ProductImage"] ?>" alt="Product" class="ProductStyle"> </a>
+                        <img src="./images/<?= $row["ProductImage"] ?>" alt="Product" width="300px">
+                        <br>
                     <form method="POST">
                         <input type="hidden" value="<?= $row["ProductID"] ?>" name="idOrder">
                         <select name="Quantity">

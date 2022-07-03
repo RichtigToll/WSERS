@@ -43,7 +43,6 @@ create Table Orders(
     FOREIGN KEY(UserId) REFERENCES Users(UserId)
 );
 
-
 create Table OrderList(
     ListNumber INT NOT NULL AUTO_INCREMENT,
     OrderNumber varchar(255),
@@ -72,3 +71,5 @@ INSERT INTO Descriptions (DescText, ProductID, LanID, DescText2) VALUES ("BESICH
 INSERT INTO Descriptions (DescText, ProductID, LanID, DescText2) VALUES ("ENTDECKE DIE FORZA HORIZON WELT IN ULTRA HD!", 4, 2, "SPIELE DIE BELIEBTESTEN SPIELE WIE FORZA HORIZON 5 IN QHD/60 BILDER PRO SEKUNDE - DAZU NOCH XBOX GAME PASS für 3 MONATE!");
 
 INSERT INTO Users (UserName, UserPsw, UserType) VALUES ("LinFr140", "$2y$10$rUYDJofyGuxEVB0pKi4w6e3UpD3nSZNBksBFBRS.A24c6E8VkkQ0.", "Admin");
+
+CREATE VIEW OrdersALL as SELECT OrderNumber, UserName, SUM(Price*ProductQuantity) as TotalOrder FROM Orders NATURAL JOIN Users NATURAL JOIN OrderList NATURAL JOIN Products GROUP BY OrderNumber;

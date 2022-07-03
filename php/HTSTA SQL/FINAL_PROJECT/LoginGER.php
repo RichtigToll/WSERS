@@ -3,27 +3,29 @@ include_once("CommonCode.php");
 
 if (isset($_POST["user"], $_POST["password"])) {
 
-    $sqlState = $connection->prepare("SELECT * FROM Users where UserName = ?"); //Before inserting the user, you gonna select the user to SEE if the user exists
-    $sqlState->bind_param("s", $_POST["user"]); // You bind what the guy wrote
-    $sqlState->execute(); //Execute the Select
-    $resultéieren = $sqlState->get_result(); // Get the result of the Select
-    $UserExists = $resultéieren->num_rows; //You count the rows of the result
+    $sqlState = $connection->prepare("SELECT * FROM Users where UserName = ?");
+    $sqlState->bind_param("s", $_POST["user"]);
+    $sqlState->execute();
+    $resultéieren = $sqlState->get_result();
+    $UserExists = $resultéieren->num_rows;
 
 
-    if ($UserExists == 1) { //Checks if there is ONLY 1 user with the ONLY 1 username. Depending of how many users you have, you might have more than 1 row
-        $row = $resultéieren->fetch_assoc(); //If the user exists, it copies (fetch) the row to the $row
+    if ($UserExists == 1) {
+        $row = $resultéieren->fetch_assoc();
 
-        if (password_verify($_POST["password"], $row["UserPsw"])) { //You gonna verify what the USER wrote on the INPUT, with the HASHED password on the database
+        if (password_verify($_POST["password"], $row["UserPsw"])) {
 
-            $_SESSION["UserName"] = $_POST["user"]; //You store the username on the Session
-            $_SESSION["UserLoggedIn"] = true; //The User just logged in
-            $_SESSION["shoppingcard"] = []; // This creates an empty (shopping cart) array
+            $_SESSION["UserName"] = $_POST["user"];
+            $_SESSION["UserLoggedIn"] = true;
+            $_SESSION["shoppingcard"] = [];
             $_SESSION["UserType"] = $row["UserType"];
+            $_SESSION["UserId"] = $row["UserId"];
 
-            header("Location: HomeGER.php"); //Redirect to the homepage
-            die(); //We don't want run ANYTHING else after the header
-        } else { // If it doesn't verify
-            echo '<script> alert("Falsches Passwort") </script>'; //alert
+            print '<script>window.location.href = "Home.php";</script>';
+            die();
+
+        } else {
+            echo '<script> alert("Falsches Passwort") </script>';
         }
     } else {
         echo '<script> alert("Benutzer existiert nicht") </script>';
