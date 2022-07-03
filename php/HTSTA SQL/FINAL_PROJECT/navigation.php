@@ -67,8 +67,8 @@ if ($_SESSION["Lang"] == "EN") {
                     <div class="downtwo">
                         <a href="ShoppingCardGER.php" id="blacktext" class="navbarborders">Einkaufswagen</a>
                         <?php if ($_SESSION["UserType"] == "Admin") { ?>
-                            <a href="AdminOrdersGER.php" id="blacktext" class="navbarborders">Bestellungen</a>
-                            <a href="AdminCreateProductGER.php" id="blacktext" class="navbarborders">Neues Produkt</a>
+                            <a href="AdminOrders.php" id="blacktext" class="navbarborders">Bestellungen</a>
+                            <a href="AdminCreateProduct.php" id="blacktext" class="navbarborders">Neues Produkt</a>
                         <?php } ?>
                         <a onclick="document.getElementById('formLogoutTwo').submit();" href="#" id="blacktext" class="navbarborders">Abmelden</a>
                     </div>

@@ -10,6 +10,7 @@ include_once("CommonCode.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
+    <link rel="icon" href="./images/Logo.png" type="image/icon type">
     <title>Product Details</title>
 </head>
 

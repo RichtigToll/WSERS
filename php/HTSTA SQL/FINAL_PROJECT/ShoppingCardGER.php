@@ -24,6 +24,7 @@ if ($_SESSION["UserLoggedIn"] == false) {
     <script src="./Bootstrap/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
+    <link rel="icon" href="./images/Logo.png" type="image/icon type">
     <title>Einkaufswagen</title>
     <style>
         #ShopCardNav {

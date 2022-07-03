@@ -21,8 +21,9 @@ if (isset($_POST["user"], $_POST["password"])) {
             $_SESSION["UserType"] = $row["UserType"];
             $_SESSION["UserId"] = $row["UserId"];
 
-            header("Location: Home.php"); //Redirect to the homepage
+            print '<script>window.location.href = "Home.php";</script>'; //Redirect to the homepage
             die(); //We don't want run ANYTHING else after the header
+
         } else { // If it doesn't verify
             echo '<script> alert("Password does not match") </script>'; //alert
         }
@@ -44,6 +45,7 @@ if (isset($_POST["user"], $_POST["password"])) {
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
+    <link rel="icon" href="./images/Logo.png" type="image/icon type">
 </head>
 
 <body>

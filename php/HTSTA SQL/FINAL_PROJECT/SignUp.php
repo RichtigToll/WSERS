@@ -61,6 +61,7 @@ if (isset($_POST["UserName"], $_POST["PswOne"], $_POST["PswTwo"])) {
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Sign Up here</title>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
+    <link rel="icon" href="./images/Logo.png" type="image/icon type">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

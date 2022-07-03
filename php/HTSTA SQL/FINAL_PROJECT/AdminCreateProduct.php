@@ -57,6 +57,8 @@ if (isset($_POST["Productname"], $_POST["IMGname"], $_POST["Price"], $_POST["Upp
     <script src="./Bootstrap/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
+    <link rel="icon" href="./images/Logo.png" type="image/icon type">
+    <title>Create a product</title>
 
     <style>
         .form-holder {
@@ -209,7 +211,6 @@ if (isset($_POST["Productname"], $_POST["IMGname"], $_POST["Price"], $_POST["Upp
             margin-left: 5px;
         }
     </style>
-    <title>Create a product</title>
 </head>
 
 <body>

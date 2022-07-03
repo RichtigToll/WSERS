@@ -11,6 +11,7 @@ include_once("CommonCode.php");
     <title>Schreibt uns!</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
+    <link rel="icon" href="./images/Logo.png" type="image/icon type">
     <script src='main.js'></script>
 </head>
 
@@ -40,7 +41,7 @@ include_once("CommonCode.php");
         <h3 class="TextSize30">Support:</h1>
         <h1 class="TextSize20" id="InformationProduct">+352 345 678 910</h1>
         oder
-        <h1 class="TextSize20" id="InformationProduct">+352 109 876 543</h1>
+        <h1 class="TextSize20" id="InformationProduct">linfr140@gmail.lu</h1>
     </div>
 </div>
 </div>

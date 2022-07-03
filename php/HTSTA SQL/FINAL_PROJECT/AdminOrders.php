@@ -24,11 +24,40 @@ if ($_SESSION["UserType"] != "Admin") {
     <script src="./Bootstrap/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='Navbar.css?t=<?= time(); ?>'>
+    <link rel="icon" href="./images/Logo.png" type="image/icon type">
     <title>Orders</title>
 </head>
 
 <body>
-    <div>Nice, you are an admin</div>
+    <?php
+    $ActivePage = "CreateProduct";
+    $URL =  "AdminOrders.php";
+    $URL2 = "AdminOrders.php";
+    include("ProductInfoNav.php");
+    ?>
+
+    <table class="table align-middle" style="margin-top: 4%; background-color: white;">
+        <thead>
+            <tr>
+                <!-- Titles -->
+                <th>OrderID</th>
+                <th>User</th>
+                <th>Product</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- Column -->
+                <th>16464</th>
+                <td>UserName</td>
+                <td>XBOX</td>
+                <td>
+                    <button type="submit" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>
